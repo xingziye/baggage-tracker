@@ -26,8 +26,8 @@ class ServiceTableViewController: UITableViewController {
                 let to = item["destination"] as! String
                 //let flight = item["flight"] as! String
                 let name = item["name"] as! String
-                let port1 = Airport(name: from, location: from)
-                let port2 = Airport(name: to, location: to)
+                let port1 = Airport(code: from)
+                let port2 = Airport(code: to)
                 let bag = Baggage(name: name, departure: port1, destination: port2)
                 self.baggages += [bag]
                 dispatch_async(dispatch_get_main_queue()) {
@@ -60,7 +60,7 @@ class ServiceTableViewController: UITableViewController {
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.departure.name + "✈️" + bag.destination.name
+        cell.bagInfoLabel.text = bag.departure.code + "✈️" + bag.destination.code
         
         return cell
     }

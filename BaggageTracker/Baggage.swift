@@ -19,6 +19,13 @@ struct Baggage {
         return "{\(name), }"
     }
     
+    // MARK: Types
+    
+    struct PropertyKey {
+        static let nameKey = "name"
+        static let flightKey = "flight"
+    }
+    
     init(name: String, departure: Airport, destination: Airport) {
         self.name = name
         self.departure = departure

@@ -28,8 +28,8 @@ class BaggageTableViewController: UITableViewController {
     }
     
     func loadSample() {
-        let port1 = Airport(name: "DTW", location: "Detroit")
-        let port2 = Airport(name: "SFO", location: "San Francisco")
+        let port1 = Airport(code: "DTW")
+        let port2 = Airport(code: "SFO")
         let sampleBag = Baggage(name: "MyBaggage", departure: port1, destination: port2)
         
         baggages += [sampleBag]
@@ -58,7 +58,7 @@ class BaggageTableViewController: UITableViewController {
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.departure.name + "✈️" + bag.destination.name
+        cell.bagInfoLabel.text = bag.departure.code + "✈️" + bag.destination.code
 
         return cell
     }

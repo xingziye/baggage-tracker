@@ -9,11 +9,13 @@
 import UIKit
 
 struct Airport {
-    let name: String
-    let location: String
+    let code: String
+    let name: String?
+    let location: String?
     
-    init(name: String, location: String) {
-        self.name = name
-        self.location = location
+    init(code: String) {
+        self.code = code
+        self.name = nil
+        self.location = nil
     }
 }
