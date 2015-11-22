@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86361D4B1BFD2F09007FA108 /* AddingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86361D4A1BFD2F09007FA108 /* AddingViewController.swift */; };
 		86555FBB1BDF3AB400921DB7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86555FBA1BDF3AB400921DB7 /* Service.swift */; };
 		86555FBF1BDF4A0D00921DB7 /* ServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86555FBE1BDF4A0D00921DB7 /* ServiceTableViewController.swift */; };
 		8673951A1BD307F300E96195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867395191BD307F300E96195 /* AppDelegate.swift */; };
@@ -18,9 +19,11 @@
 		8673952E1BD324DB00E96195 /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8673952D1BD324DB00E96195 /* Airport.swift */; };
 		867395301BD32DB700E96195 /* BaggageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8673952F1BD32DB700E96195 /* BaggageTableViewController.swift */; };
 		867395341BD3316300E96195 /* BaggageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867395331BD3316300E96195 /* BaggageTableViewCell.swift */; };
+		86DAE5951C01383200995BC8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DAE5941C01383200995BC8 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86361D4A1BFD2F09007FA108 /* AddingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddingViewController.swift; sourceTree = "<group>"; };
 		86555FBA1BDF3AB400921DB7 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		86555FBE1BDF4A0D00921DB7 /* ServiceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTableViewController.swift; sourceTree = "<group>"; };
 		867395161BD307F300E96195 /* BaggageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaggageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +37,7 @@
 		8673952D1BD324DB00E96195 /* Airport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 		8673952F1BD32DB700E96195 /* BaggageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaggageTableViewController.swift; sourceTree = "<group>"; };
 		867395331BD3316300E96195 /* BaggageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaggageTableViewCell.swift; sourceTree = "<group>"; };
+		86DAE5941C01383200995BC8 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 				8673952B1BD3241A00E96195 /* Baggage.swift */,
 				8673952D1BD324DB00E96195 /* Airport.swift */,
 				8673951D1BD307F300E96195 /* Main.storyboard */,
+				86361D4A1BFD2F09007FA108 /* AddingViewController.swift */,
 				867395331BD3316300E96195 /* BaggageTableViewCell.swift */,
 				8673952F1BD32DB700E96195 /* BaggageTableViewController.swift */,
 				867395201BD307F300E96195 /* Assets.xcassets */,
@@ -78,6 +83,7 @@
 				867395251BD307F300E96195 /* Info.plist */,
 				86555FBA1BDF3AB400921DB7 /* Service.swift */,
 				86555FBE1BDF4A0D00921DB7 /* ServiceTableViewController.swift */,
+				86DAE5941C01383200995BC8 /* DetailsViewController.swift */,
 			);
 			path = BaggageTracker;
 			sourceTree = "<group>";
@@ -108,6 +114,7 @@
 		8673950E1BD307F200E96195 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "MSU ECE 480 Group 1";
 				TargetAttributes = {
@@ -155,12 +162,14 @@
 			files = (
 				8673952C1BD3241A00E96195 /* Baggage.swift in Sources */,
 				86555FBB1BDF3AB400921DB7 /* Service.swift in Sources */,
+				86361D4B1BFD2F09007FA108 /* AddingViewController.swift in Sources */,
 				8673952E1BD324DB00E96195 /* Airport.swift in Sources */,
 				867395301BD32DB700E96195 /* BaggageTableViewController.swift in Sources */,
 				8673951C1BD307F300E96195 /* SearchViewController.swift in Sources */,
 				86555FBF1BDF4A0D00921DB7 /* ServiceTableViewController.swift in Sources */,
 				867395341BD3316300E96195 /* BaggageTableViewCell.swift in Sources */,
 				8673951A1BD307F300E96195 /* AppDelegate.swift in Sources */,
+				86DAE5951C01383200995BC8 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

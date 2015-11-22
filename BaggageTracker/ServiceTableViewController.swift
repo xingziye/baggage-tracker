@@ -17,24 +17,7 @@ class ServiceTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        service = Service()
-        service.getInfo(queries!) {
-            (response) in
-            for item in response {
-                let from = item["departure"] as! String
-                let to = item["destination"] as! String
-                //let flight = item["flight"] as! String
-                let name = item["name"] as! String
-                let port1 = Airport(code: from)
-                let port2 = Airport(code: to)
-                let bag = Baggage(name: name, departure: port1, destination: port2)
-                self.baggages += [bag]
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +43,7 @@ class ServiceTableViewController: UITableViewController {
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.departure.code + "✈️" + bag.destination.code
+        cell.bagInfoLabel.text = bag.origin.code + "✈️" + bag.destination.code
         
         return cell
     }

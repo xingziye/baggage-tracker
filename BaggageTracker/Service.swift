@@ -30,7 +30,7 @@ class Service {
             do {
                 let response = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSArray
                 callback(response)
-                print(response)
+                //print(response)
             } catch let error as NSError {
                 print(error.localizedDescription)
             }

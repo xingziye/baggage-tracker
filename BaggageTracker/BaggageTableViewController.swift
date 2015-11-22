@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaggageTableViewController: UITableViewController {
+class BaggageTableViewController: UITableViewController, UINavigationControllerDelegate {
     // MARK: Properties
     var baggages = [Baggage]()
 
@@ -17,22 +17,16 @@ class BaggageTableViewController: UITableViewController {
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
-        
-        loadSample()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    func loadSample() {
-        let port1 = Airport(code: "DTW")
-        let port2 = Airport(code: "SFO")
-        let sampleBag = Baggage(name: "MyBaggage", departure: port1, destination: port2)
         
-        baggages += [sampleBag]
+        if let savedBags = loadBags() {
+            baggages += savedBags
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +52,10 @@ class BaggageTableViewController: UITableViewController {
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.departure.code + "✈️" + bag.destination.code
+        cell.bagInfoLabel.text = bag.origin.code + "✈️" + bag.destination.code
+        if let imagePath = bag.imagePath {
+            cell.bagImage.image = UIImage(contentsOfFile: imagePath)
+        }
 
         return cell
     }
@@ -76,6 +73,7 @@ class BaggageTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             baggages.removeAtIndex(indexPath.row)
+            saveBags()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -96,24 +94,53 @@ class BaggageTableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showDetails", sender: self)
+    }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetails" {
+            let detailsViewController = segue.destinationViewController as! DetailsViewController
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let bag = baggages[indexPath.row]
+                detailsViewController.bag = bag
+                detailsViewController.updateStatus(bag)
+                baggages[indexPath.row] = bag
+            }
+        }
     }
-    */
 
     @IBAction func unwindToBaggageList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ServiceTableViewController, bag = sourceViewController.newBag {
             // Add a new baggage.
             let newIndexPath = NSIndexPath(forRow: baggages.count, inSection: 0)
             baggages.append(bag)
+            saveBags()
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
         }
+        if let _ = sender.sourceViewController as? AddingViewController {
+            saveBags()
+            tableView.reloadData()
+        }
+        //print(baggages.count)
+    }
+    
+    // MARK: NSCoding
+    func saveBags() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(baggages, toFile: Baggage.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Saving Fails")
+        }
+    }
+    
+    func loadBags() -> [Baggage]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Baggage.ArchiveURL.path!) as? [Baggage]
     }
 
 }
