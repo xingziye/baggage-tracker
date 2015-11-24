@@ -26,6 +26,16 @@ class Baggage: NSObject, NSCoding {
         super.init()
     }
     
+    init(bag: Baggage) {
+        self.name = bag.name
+        self.origin = bag.origin
+        self.destination = bag.destination
+        self.flight = bag.flight
+        self.id = bag.id
+        self.status = bag.status
+        self.imagePath = bag.imagePath
+    }
+    
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!

@@ -19,6 +19,8 @@
 		8673952E1BD324DB00E96195 /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8673952D1BD324DB00E96195 /* Airport.swift */; };
 		867395301BD32DB700E96195 /* BaggageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8673952F1BD32DB700E96195 /* BaggageTableViewController.swift */; };
 		867395341BD3316300E96195 /* BaggageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867395331BD3316300E96195 /* BaggageTableViewCell.swift */; };
+		86B8D2C41C02AF6A003BF2BB /* BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B8D2C31C02AF6A003BF2BB /* BLE.swift */; };
+		86B8D2C71C0357C4003BF2BB /* 5718.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 86B8D2C61C0357C4003BF2BB /* 5718.mp3 */; };
 		86DAE5951C01383200995BC8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DAE5941C01383200995BC8 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		8673952D1BD324DB00E96195 /* Airport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 		8673952F1BD32DB700E96195 /* BaggageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaggageTableViewController.swift; sourceTree = "<group>"; };
 		867395331BD3316300E96195 /* BaggageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaggageTableViewCell.swift; sourceTree = "<group>"; };
+		86B8D2C31C02AF6A003BF2BB /* BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLE.swift; sourceTree = "<group>"; };
+		86B8D2C61C0357C4003BF2BB /* 5718.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5718.mp3; sourceTree = "<group>"; };
 		86DAE5941C01383200995BC8 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +58,8 @@
 		8673950D1BD307F200E96195 = {
 			isa = PBXGroup;
 			children = (
+				86B8D2C51C0357AE003BF2BB /* Supporting */,
+				86B8D2C21C02AF3C003BF2BB /* BLE */,
 				867395181BD307F300E96195 /* BaggageTracker */,
 				867395171BD307F300E96195 /* Products */,
 			);
@@ -86,6 +92,22 @@
 				86DAE5941C01383200995BC8 /* DetailsViewController.swift */,
 			);
 			path = BaggageTracker;
+			sourceTree = "<group>";
+		};
+		86B8D2C21C02AF3C003BF2BB /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				86B8D2C31C02AF6A003BF2BB /* BLE.swift */,
+			);
+			name = BLE;
+			sourceTree = "<group>";
+		};
+		86B8D2C51C0357AE003BF2BB /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				86B8D2C61C0357C4003BF2BB /* 5718.mp3 */,
+			);
+			name = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +172,7 @@
 				867395241BD307F300E96195 /* LaunchScreen.storyboard in Resources */,
 				867395211BD307F300E96195 /* Assets.xcassets in Resources */,
 				8673951F1BD307F300E96195 /* Main.storyboard in Resources */,
+				86B8D2C71C0357C4003BF2BB /* 5718.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +190,7 @@
 				867395301BD32DB700E96195 /* BaggageTableViewController.swift in Sources */,
 				8673951C1BD307F300E96195 /* SearchViewController.swift in Sources */,
 				86555FBF1BDF4A0D00921DB7 /* ServiceTableViewController.swift in Sources */,
+				86B8D2C41C02AF6A003BF2BB /* BLE.swift in Sources */,
 				867395341BD3316300E96195 /* BaggageTableViewCell.swift in Sources */,
 				8673951A1BD307F300E96195 /* AppDelegate.swift in Sources */,
 				86DAE5951C01383200995BC8 /* DetailsViewController.swift in Sources */,

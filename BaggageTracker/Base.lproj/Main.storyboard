@@ -255,6 +255,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="oQU-5F-8fR" kind="show" identifier="showDetails" id="Dbz-Ht-A4P"/>
+                        <segue destination="8wM-oh-tEg" kind="show" identifier="showResults" id="O2f-Ba-cIM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkZ-MX-kZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,7 +509,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqN-xZ-Akn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Uh9-3R-w4I" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2656" y="337"/>
+            <point key="canvasLocation" x="1837" y="1165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kad-Rb-dbf">
@@ -553,4 +554,7 @@
         <image name="Default Image" width="384" height="384"/>
         <image name="Select" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vOR-2t-E9F"/>
+    </inferredMetricsTieBreakers>
 </document>

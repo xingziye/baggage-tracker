@@ -11,9 +11,11 @@ import UIKit
 class BaggageTableViewController: UITableViewController, UINavigationControllerDelegate {
     // MARK: Properties
     var baggages = [Baggage]()
+    var updatedBags = [Baggage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidload")
         
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
@@ -52,7 +54,11 @@ class BaggageTableViewController: UITableViewController, UINavigationControllerD
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.origin.code + "✈️" + bag.destination.code
+        if let status = bag.status {
+            cell.bagInfoLabel.text = status
+        } else {
+            cell.bagInfoLabel.text = "Unchecked"
+        }
         if let imagePath = bag.imagePath {
             cell.bagImage.image = UIImage(contentsOfFile: imagePath)
         }
@@ -96,7 +102,56 @@ class BaggageTableViewController: UITableViewController, UINavigationControllerD
     */
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("showDetails", sender: self)
+        updatedBags.removeAll()
+        let bag = baggages[indexPath.row]
+        let query = "name=\(bag.name)&flight=\(bag.flight)&origin=\(bag.origin.code)&destination=\(bag.destination.code)"
+        let service = Service()
+        service.getInfo(query) {
+            (response) in
+            print(response)
+            if response.count >= 1 {
+                if let _ = bag.id {
+                    for item in response {
+                        let tag_id = item["tag_id"] as! String
+                        if bag.id == tag_id {
+                            bag.status = (item["bag_status"] as! String)
+                            self.updatedBags.append(bag)
+                            self.baggages[indexPath.row] = bag
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.baggages[indexPath.row] = bag
+                                self.saveBags()
+                                self.tableView.reloadData()
+                                self.performSegueWithIdentifier("showDetails", sender: self)
+                            }
+                            break
+                        }
+                    }
+                } else {
+                    self.baggages.removeAtIndex(indexPath.row)
+                    self.saveBags()
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    //self.tableView.reloadData()
+                    
+                    for item in response {
+                        let id = item["tag_id"] as! String
+                        let status = item["bag_status"] as! String
+                        let newBag = Baggage(bag: bag)
+                        newBag.id = id
+                        newBag.status = status
+                        self.updatedBags.append(newBag)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.performSegueWithIdentifier("showResults", sender: self)
+                    }
+                }
+            } else {
+                self.updatedBags.append(bag)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.performSegueWithIdentifier("showDetails", sender: self)
+                }
+            }
+        }
     }
 
     // MARK: - Navigation
@@ -107,12 +162,11 @@ class BaggageTableViewController: UITableViewController, UINavigationControllerD
         // Pass the selected object to the new view controller.
         if segue.identifier == "showDetails" {
             let detailsViewController = segue.destinationViewController as! DetailsViewController
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let bag = baggages[indexPath.row]
-                detailsViewController.bag = bag
-                detailsViewController.updateStatus(bag)
-                baggages[indexPath.row] = bag
-            }
+            detailsViewController.bag = updatedBags[0]
+            //detailsViewController.updateStatus(bag)
+        } else if segue.identifier == "showResults" {
+            let serviceTableViewController = segue.destinationViewController as! ServiceTableViewController
+            serviceTableViewController.baggages += updatedBags
         }
     }
 
@@ -128,7 +182,6 @@ class BaggageTableViewController: UITableViewController, UINavigationControllerD
             saveBags()
             tableView.reloadData()
         }
-        //print(baggages.count)
     }
     
     // MARK: NSCoding

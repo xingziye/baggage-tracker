@@ -43,7 +43,7 @@ class ServiceTableViewController: UITableViewController {
         let bag = baggages[indexPath.row]
         
         cell.bagNameLabel.text = bag.name
-        cell.bagInfoLabel.text = bag.origin.code + "✈️" + bag.destination.code
+        cell.bagInfoLabel.text = bag.origin.code + "→" + bag.destination.code
         
         return cell
     }
